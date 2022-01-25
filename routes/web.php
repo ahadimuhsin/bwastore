@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\DashboardProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardProductController;
+use App\Http\Controllers\DashboardTransactionController;
+use App\Http\Controllers\StoreSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +27,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/products', [DashboardProductController::class, 'index'])->name('dashboard.products');
     Route::get('/products/{id}', [DashboardProductController::class, 'show'])->name('dashboard.products.details');
+
+    Route::get('/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard.transactions');
+    Route::get('/transactions/{id}', [DashboardTransactionController::class, 'show'])->name('dashboard.transactions.details');
+
+    Route::get('store-settings', [StoreSettingsController::class, 'store'])->name('dashboard.settings');
+    Route::get('accounts', [StoreSettingsController::class, 'account'])->name('dashboard.accounts');
 });
 Auth::routes();

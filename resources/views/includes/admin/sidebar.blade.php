@@ -5,27 +5,27 @@
     <div class="list-group list-group-flush">
       <a
         href="{{ route('dashboard.index') }}"
-        class="list-group-item list-group-item-action active"
+        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.index' || Route::is('dashboard.index') ? 'active' : '' }}"
         >Dashboard</a
       >
       <a
         href="{{ route('dashboard.products') }}"
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.products' || Route::is('dashboard.products.*') ? 'active' : '' }}"
         >My Products</a
       >
       <a
-        href="/dashboard-transactions.html"
-        class="list-group-item list-group-item-action"
+        href="{{ route('dashboard.transactions') }}"
+        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.transactions' || Route::is('dashboard.transactions.*') ? 'active' : '' }}"
         >Transactions</a
       >
       <a
-        href="/dashboard-settings.html"
-        class="list-group-item list-group-item-action"
+        href="{{ route('dashboard.settings') }}"
+        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.settings' ? 'active' : '' }}"
         >Store Settings</a
       >
       <a
-        href="/dashboard-account.html"
-        class="list-group-item list-group-item-action"
+        href="{{ route('dashboard.accounts') }}"
+        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.accounts' ? 'active' : '' }}"
         >My Account</a
       >
     </div>

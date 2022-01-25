@@ -8,6 +8,8 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <link rel="shortcut icon" type="image/jpg" href="{{ asset('images/logo.svg') }}"/>
+
 
     <title>@yield('title')</title>
 
