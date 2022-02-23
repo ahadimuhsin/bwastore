@@ -15,13 +15,14 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('users_id')->unsigned();
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->integer('users_id');
+            // $table->foreign('users_id')->references('id')->on('users');
             $table->integer('insurance_price');
             $table->integer('shipping_price');
             $table->integer('total_price');
             $table->string('transaction_status');
-            $table->string('resi');
+            $table->string('code');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

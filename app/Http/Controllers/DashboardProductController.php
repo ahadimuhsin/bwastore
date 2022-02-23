@@ -9,16 +9,16 @@ class DashboardProductController extends Controller
     //
     public function index()
     {
-        return view('pages.admin.products.index');
+        return view('pages.user.products.index');
     }
 
     public function create()
     {
-        return view('pages.admin.products.create');
+        return view('pages.user.products.create');
     }
 
     public function show()
     {
-        return view('pages.admin.products.details');
+        return view('pages.user.products.details');
     }
 }

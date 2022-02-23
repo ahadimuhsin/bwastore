@@ -1,32 +1,42 @@
 <div class="border-right" id="sidebar-wrapper">
     <div class="sidebar-heading text-center">
-      <img src="{{ asset('/images/dashboard-store-logo.svg') }}" alt="" class="my-4" />
+      <img src="{{ asset('/images/user.png') }}" alt="" class="my-4" style="max-width: 150px" />
     </div>
     <div class="list-group list-group-flush">
       <a
-        href="{{ route('dashboard.index') }}"
-        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.index' || Route::is('dashboard.index') ? 'active' : '' }}"
+        href="{{ route('admin-dashboard') }}"
+        class="list-group-item list-group-item-action"
         >Dashboard</a
       >
       <a
-        href="{{ route('dashboard.products') }}"
-        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.products' || Route::is('dashboard.products.*') ? 'active' : '' }}"
-        >My Products</a
+        href=""
+        class="list-group-item list-group-item-action"
+        >Products</a
       >
       <a
-        href="{{ route('dashboard.transactions') }}"
-        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.transactions' || Route::is('dashboard.transactions.*') ? 'active' : '' }}"
+        href=""
+        class="list-group-item list-group-item-action"
+        >Categories</a
+      >
+      <a
+        href=""
+        class="list-group-item list-group-item-action"
         >Transactions</a
       >
       <a
-        href="{{ route('dashboard.settings') }}"
-        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.settings' ? 'active' : '' }}"
+        href=""
+        class="list-group-item list-group-item-action"
         >Store Settings</a
       >
       <a
-        href="{{ route('dashboard.accounts') }}"
-        class="list-group-item list-group-item-action {{ Route::currentRouteName() == 'dashboard.accounts' ? 'active' : '' }}"
-        >My Account</a
+        href=""
+        class="list-group-item list-group-item-action"
+        >Users</a
+      >
+      <a
+        href=""
+        class="list-group-item list-group-item-action"
+        >Sign Out</a
       >
     </div>
   </div>

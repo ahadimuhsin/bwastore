@@ -16,8 +16,8 @@ class CreateProductGaleriesTable extends Migration
         Schema::create('product_galeries', function (Blueprint $table) {
             $table->id();
             $table->string('photo');
-            $table->integer('products_id')->unsigned();
-            $table->foreign('products_id')->references('id')->on('products');
+            $table->integer('products_id');
+            // $table->foreign('products_id')->references('id')->on('products');
             // $table->softDeletes();
             $table->timestamps();
         });

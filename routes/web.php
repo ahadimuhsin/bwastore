@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardProductController;
@@ -23,7 +24,7 @@ Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->nam
 Route::get('/success', [\App\Http\Controllers\CartController::class, 'success'])->name('success');
 Route::get('register/success', [\App\Http\Controllers\Auth\RegisterController::class, 'success'])->name('register-success');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('dashboard')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/products', [DashboardProductController::class, 'index'])->name('dashboard.products');
     Route::get('/products/{id}', [DashboardProductController::class, 'show'])->name('dashboard.products.details');
@@ -33,5 +34,11 @@ Route::prefix('admin')->group(function () {
 
     Route::get('store-settings', [StoreSettingsController::class, 'store'])->name('dashboard.settings');
     Route::get('accounts', [StoreSettingsController::class, 'account'])->name('dashboard.accounts');
+});
+
+Route::prefix('admin')->namespace('Admin')
+// ->middleware(['auth', 'is_admin'])
+->group(function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('admin-dashboard');
 });
 Auth::routes();

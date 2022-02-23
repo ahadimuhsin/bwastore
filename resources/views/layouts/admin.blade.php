@@ -13,6 +13,7 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="{{ asset('style/main.css') }}" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.js"></script>
     <link rel="shortcut icon" type="image/jpg" href="{{ asset('images/logo.svg') }}"/>
     @stack('addon-style')
   </head>
@@ -21,7 +22,7 @@
     <div class="page-dashboard">
       <div class="d-flex" id="wrapper" data-aos="fade-right">
         <!-- Sidebar -->
-        @include('includes.dashboard.sidebar')
+        @include('includes.admin.sidebar')
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -69,20 +70,8 @@
                     Hi, Angga
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/index.html"
-                      >Back to Store</a
-                    >
-                    <a class="dropdown-item" href="/dashboard-account.html"
-                      >Settings</a
-                    >
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/">Logout</a>
                   </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link d-inline-block mt-2" href="#">
-                    <img src="/images/icon-cart-empty.svg" alt="" />
-                  </a>
                 </li>
               </ul>
               <!-- Mobile Menu -->
@@ -90,11 +79,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">
                     Hi, Angga
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link d-inline-block" href="#">
-                    Cart
                   </a>
                 </li>
               </ul>
@@ -110,6 +94,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();

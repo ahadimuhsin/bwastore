@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dashboard')
 
 @section('content')
 <div
@@ -7,9 +7,9 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Admin Dashboard</h2>
+                <h2 class="dashboard-title">Dashboard</h2>
                 <p class="dashboard-subtitle">
-                  Halaman Admin Nih
+                  Look what you have made today!
                 </p>
               </div>
               <div class="dashboard-content">
@@ -21,7 +21,7 @@
                           Customer
                         </div>
                         <div class="dashboard-card-subtitle">
-                          {{ $user }}
+                          15,209
                         </div>
                       </div>
                     </div>
@@ -33,7 +33,7 @@
                           Revenue
                         </div>
                         <div class="dashboard-card-subtitle">
-                          {{ __('Rp') }} {{ $revenue }}
+                          $931,290
                         </div>
                       </div>
                     </div>
@@ -45,7 +45,7 @@
                           Transaction
                         </div>
                         <div class="dashboard-card-subtitle">
-                          {{ $count_transaction }}
+                          22,409,399
                         </div>
                       </div>
                     </div>

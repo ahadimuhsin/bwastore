@@ -43,7 +43,7 @@ Transaction Details
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
-                                            <div class="product-title">Status</div>
+                                            <div class="product-title">Status Pembayaran</div>
                                             <div class="product-subtitle text-danger">
                                                 Pending
                                             </div>
@@ -106,10 +106,10 @@ Transaction Details
                                         <div class="col-12">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <div class="product-title">Status</div>
+                                                    <div class="product-title">Status Pengiriman</div>
                                                     <select name="status" id="status" class="form-control"
                                                         v-model="status">
-                                                        <option value="UNPAID">Unpaid</option>
+                                                        {{-- <option value="UNPAID">Unpaid</option> --}}
                                                         <option value="PENDING">Pending</option>
                                                         <option value="SHIPPING">Shipping</option>
                                                         <option value="SUCCESS">Success</option>

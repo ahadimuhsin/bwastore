@@ -28,7 +28,7 @@ Transactions
                 <div class="tab-pane fade show active" id="sell" role="tabpanel" aria-labelledby="sell-tab">
                     <div class="row mt-3">
                         <div class="col-12 mt-2">
-                            <a class="card card-list d-block" href="/dashboard-transactions-details.html">
+                            <a class="card card-list d-block" href="{{ route('dashboard.transactions.details', 1) }}">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-1">
@@ -49,7 +49,7 @@ Transactions
                                     </div>
                                 </div>
                             </a>
-                            <a class="card card-list d-block" href="/dashboard-transactions-details.html">
+                            <a class="card card-list d-block" href="{{ route('dashboard.transactions.details', 1) }}">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-1">
@@ -70,7 +70,7 @@ Transactions
                                     </div>
                                 </div>
                             </a>
-                            <a class="card card-list d-block" href="/dashboard-transactions-details.html">
+                            <a class="card card-list d-block" href="{{ route('dashboard.transactions.details', 1) }}">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-1">
