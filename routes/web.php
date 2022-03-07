@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StoreSettingsController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardTransactionController;
-use App\Http\Controllers\StoreSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,10 @@ Route::prefix('dashboard')->group(function () {
     Route::get('accounts', [StoreSettingsController::class, 'account'])->name('dashboard.accounts');
 });
 
-Route::prefix('admin')->namespace('Admin')
+Route::prefix('admin')->namespace('App\Http\Controllers\Admin')
 // ->middleware(['auth', 'is_admin'])
 ->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin-dashboard');
+    Route::resource('categories', CategoryController::class);
 });
 Auth::routes();

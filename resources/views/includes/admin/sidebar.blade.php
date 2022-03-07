@@ -14,8 +14,8 @@
         >Products</a
       >
       <a
-        href=""
-        class="list-group-item list-group-item-action"
+        href="{{ route('categories.index') }}"
+        class="list-group-item list-group-item-action {{ (request()->is('admin/categories*')) ? 'active' : '' }}"
         >Categories</a
       >
       <a
