@@ -49,7 +49,7 @@ class CategoryController extends Controller
             })
             ->editColumn('photo', function($item){
                 if($item->photo){
-                    return '<img src="'.Storage::url($item->photo).'" style="max-height: 40px">';
+                    return '<img src="'.Storage::disk('public')->url($item->photo).'" style="max-height: 40px">';
                 }
                 return '';
             })
