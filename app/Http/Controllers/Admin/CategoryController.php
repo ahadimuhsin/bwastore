@@ -39,7 +39,7 @@ class CategoryController extends Controller
                                 Sunting
                             </a>
                             <form action="'.route('categories.destroy', $item->id).'" method="POST">
-                               '.method_field('delete'). csrf_field().'
+                               '.csrf_field() .method_field('delete').'
                                <button type="submit" class="dropdown-item text-danger">Hapus</button>
                             </form>
                         </div>
@@ -107,7 +107,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        dd(Category::findOrFail($id));
+        $category = DB::table('categories')->where('id', $id)->first();
+        // dd($category);
+        return view('pages.admin.category.edit', compact('category'));
     }
 
     /**
@@ -117,9 +121,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+
+        $category = DB::table('categories')->where('id', $id)->first();
+
+        $data['slug'] = Str::slug($data['name'], '-');
+        $data['photo'] = $request->file('photo')->store('assets/category', 'public');
+
+        DB::table('categories')->where('id', $id)->update($data);
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -130,6 +143,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = DB::table('categories')->where('id', $id)->first();
+        Storage::disk('local')->delete('public/assets/category/'.$category->photo);
+        DB::table('categories')->where('id', $id)->delete();
+
+        return redirect()->route('categories.index');
     }
 }
