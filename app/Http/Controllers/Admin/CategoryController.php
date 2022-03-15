@@ -108,7 +108,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         // dd($id);
-        dd(Category::findOrFail($id));
+        // dd(Category::findOrFail($id));
         $category = DB::table('categories')->where('id', $id)->first();
         // dd($category);
         return view('pages.admin.category.edit', compact('category'));
