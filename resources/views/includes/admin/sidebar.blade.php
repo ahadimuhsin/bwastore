@@ -9,8 +9,8 @@
         >Dashboard</a
       >
       <a
-        href=""
-        class="list-group-item list-group-item-action"
+        href="{{ route('products.index') }}"
+        class="list-group-item list-group-item-action {{ (request()->is('admin/products*')) ? 'active' : '' }}"
         >Products</a
       >
       <a
@@ -29,8 +29,8 @@
         >Store Settings</a
       >
       <a
-        href=""
-        class="list-group-item list-group-item-action"
+        href="{{ route('users.index') }}"
+        class="list-group-item list-group-item-action {{ (request()->is('admin/users*')) ? 'active' : '' }}"
         >Users</a
       >
       <a
