@@ -24,18 +24,18 @@ class ProductGalleryRequest extends FormRequest
     public function rules()
     {
         return [
-            'photos' => 'required|image|max:5000',
-            'products_id' => 'required|exists:products,id'
+            'file' => 'required|image|max:5000',
+            'id_produk' => 'required|exists:products,id'
         ];
     }
 
     public function messages()
     {
         return [
-            'photos.required' => 'File harus dilampirkan',
-            'photos.image' => 'File foto harus berekstensi jpg atau png',
-            'photos.max' => 'Ukuran file foto maksimal 5MB',
-            'products_id.required' => 'Produk harus dipilih',
+            'file.required' => 'File harus dilampirkan',
+            'file.image' => 'File foto harus berekstensi jpg atau png',
+            'file.max' => 'Ukuran file foto maksimal 5MB',
+            'id_produk.required' => 'Produk harus dipilih',
         ];
     }
 }

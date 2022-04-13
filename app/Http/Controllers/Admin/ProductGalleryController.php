@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductGallery;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\ProductGalleryRequest;
 
@@ -16,7 +18,12 @@ class ProductGalleryController extends Controller
         if(request()->ajax())
         {
 
-            $query = ProductGallery::with('product');
+            $query = DB::table("product_galeries AS a")
+            ->selectRaw('a.*, b.name')
+            ->join("products AS b", "b.id", "=", "a.products_id")
+            ->latest();
+
+            // dd($query->id);
 
             return DataTables::of($query)
             ->addColumn('action', function($item){
@@ -28,10 +35,7 @@ class ProductGalleryController extends Controller
                             Aksi
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="'.route('products.edit', $item->id).'">
-                                Sunting
-                            </a>
-                            <form action="'.route('products.destroy', $item->id).'" method="POST">
+                            <form action="'.route('product-galleries.destroy', $item->id).'" method="POST">
                                '.csrf_field() .method_field('delete').'
                                <button type="submit" class="dropdown-item text-danger">Hapus</button>
                             </form>
@@ -40,11 +44,15 @@ class ProductGalleryController extends Controller
                 </div>
                 ';
             })
-            ->rawColumns(['action'])
+            ->editColumn('photo', function($item){
+                return $item->photo ? '<img src="'.Storage::url($item->photo).'" style="max-height: 80px">'
+                : '';
+            })
+            ->rawColumns(['action', 'photo'])
             ->make();
 
         }
-        return view('pages.admin.product.index');
+        return view('pages.admin.product-gallery.index');
     }
 
     /**
@@ -55,9 +63,7 @@ class ProductGalleryController extends Controller
     public function create()
     {
         $products = Product::get();
-        // $categories = DB::table('categories')->get();
-        // dd($categories);
-        return view('pages.admin.product.create', compact('products'));
+        return view('pages.admin.product-gallery.create', compact('products'));
     }
 
     /**
@@ -69,10 +75,13 @@ class ProductGalleryController extends Controller
     public function store(ProductGalleryRequest $request)
     {
         $data = $request->validated();
-        $data['slug'] = Str::slug($data['name'], '-');
-        Product::create($data);
+        $data['file'] = $request->file('file')->store('assets/product', 'public');
+        ProductGallery::create([
+            'photo' => $data['file'],
+            'products_id' => $data['id_produk']
+        ]);
 
-        return redirect()->route('products.index');
+        return redirect()->route('product-galleries.index');
     }
 
     /**
@@ -87,43 +96,6 @@ class ProductGalleryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // dd($id);
-        // dd(Product::findOrFail($id));
-        $product = Product::findOrFail($id);
-        $users = User::get();
-        $categories = DB::table('categories')->get();
-        // dd($product);
-        return view('pages.admin.product.edit', compact('product', 'users', 'categories'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(ProductRequest $request, $id)
-    {
-        $data = $request->validated();
-
-        $product = Product::findOrFail($id);
-
-        $data['slug'] = Str::slug($data['name'], '-');
-
-        $product->update($data);
-
-        return redirect()->route('products.index');
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -131,10 +103,10 @@ class ProductGalleryController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-        // Storage::disk('local')->delete('public/assets/product/'.$product->photo);
+        $product = ProductGallery::findOrFail($id);
+        Storage::disk('local')->delete('public/assets/product/'.$product->photo);
         $product->delete();
         // dd($product);
-        return redirect()->route('products.index');
+        return redirect()->route('product-galleries.index');
     }
 }

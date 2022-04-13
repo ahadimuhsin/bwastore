@@ -18,8 +18,8 @@ Product Gallery
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('product-gallery.create') }}" class="btn btn-primary mb-3">
-                            + Tambah Product</a>
+                            <a href="{{ route('product-galleries.create') }}" class="btn btn-primary mb-3">
+                            + Tambah Galeri Baru</a>
 
                             <div class="table-responsive">
                                 <table class="table-hover scroll-horizontal-vertical w-100" id="crudTable">
@@ -52,8 +52,8 @@ Product Gallery
             url: '{!! url()->current() !!}'
         },
         columns: [
-            {data: 'product.name', name: 'product.name'},
-            {data: 'photos', name: 'photos'},
+            {data: 'name', name: 'name'},
+            {data: 'photo', name: 'photo'},
             {
                 data: 'action',
                 name: 'action',

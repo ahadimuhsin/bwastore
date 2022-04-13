@@ -19,6 +19,7 @@ use App\Http\Controllers\DashboardTransactionController;
 */
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index'])->name('categories');
+Route::get('/categories/{slug}', [\App\Http\Controllers\CategoryController::class, 'index'])->name('categories.detail');
 Route::get('/details/{id}', [\App\Http\Controllers\DetailController::class, 'index'])->name('detail');
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart');
 Route::get('/success', [\App\Http\Controllers\CartController::class, 'success'])->name('success');
@@ -43,5 +44,6 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')
     Route::resource('categories', CategoryController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('product-galleries', ProductGalleryController::class);
 });
 Auth::routes();
