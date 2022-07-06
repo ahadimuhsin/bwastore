@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,9 +14,20 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('pages.cart');
+        $carts = Cart::with(['product.galleries', 'user'])
+        ->where('users_id', auth()->id())
+        ->get();
+        // dd($carts);
+        return view('pages.cart', compact('carts'));
     }
 
+    public function delete(Request $request, $id)
+    {
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+
+        return redirect()->route('cart');
+    }
     public function success()
     {
         return view('pages.success');

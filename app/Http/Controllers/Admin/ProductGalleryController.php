@@ -18,7 +18,7 @@ class ProductGalleryController extends Controller
         if(request()->ajax())
         {
 
-            $query = DB::table("product_galeries AS a")
+            $query = DB::table("product_galleries AS a")
             ->selectRaw('a.*, b.name')
             ->join("products AS b", "b.id", "=", "a.products_id")
             ->latest();
