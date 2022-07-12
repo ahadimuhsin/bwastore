@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\LocationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Auth\RegisterController;
@@ -20,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('register/cek', [App\Http\Controllers\Auth\RegisterController::class, 'cekEmail'])->name('api-register-cek');
-
+Route::get('province', [LocationController::class, 'provinsi'])->name('api-provinsi');
+Route::get('cities/{id}', [LocationController::class, 'kota'])->name('api-kota');

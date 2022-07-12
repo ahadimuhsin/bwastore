@@ -53,7 +53,17 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-inline-block mt-2" href="#">
-                        <img src="/images/icon-cart-empty.svg" alt="" />
+                        @php
+                            $carts = \App\Models\Cart::where('users_id', auth()->id())->count();
+                        @endphp
+                        @if ($carts > 0)
+                        <a href="{{ route('cart') }}">
+                            <img src="/images/icon-cart-filled.svg" alt="" />
+                            <div class="cart-badge">{{ $carts }}</div>
+                        </a>
+                        @else
+                            <img src="/images/icon-cart-empty.svg" alt="" />
+                        @endif
                     </a>
                 </li>
             </ul>
