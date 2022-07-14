@@ -34,8 +34,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post ('checkout/callback', [CheckoutController::class, 'callback'])->name('callback');
 
     Route::prefix('dashboard')->group(function () {
-        Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/products', [DashboardProductController::class, 'index'])->name('dashboard.products');
+        Route::get('/products/create', [DashboardProductController::class, 'create'])->name('dashboard.products.create');
+        Route::post('/products', [DashboardProductController::class, 'store'])->name('dashboard.products.store');
         Route::get('/products/{id}', [DashboardProductController::class, 'show'])->name('dashboard.products.details');
 
         Route::get('/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard.transactions');

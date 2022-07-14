@@ -12,6 +12,10 @@ class TransactionDetail extends Model
     protected $guarded = [];
 
     public function transaction(){
-        return $this->belongsTo(Transaction::class, 'transactions_id', 'id');
+        return $this->hasOne(Transaction::class, 'id', 'transactions_id');
+    }
+
+    public function product(){
+        return $this->hasOne(Product::class, 'id', 'products_id');
     }
 }

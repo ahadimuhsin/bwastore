@@ -30,19 +30,19 @@ class CheckoutController extends Controller
         ->where('users_id', auth()->id())
         ->get();
 
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
-        try {
+        // try {
             # code...
             //create transaction
-            $transaction = Transaction::create([
-                'users_id' => auth()->id(),
-                'insurance_price' => 0,
-                'shipping_price' => 0,
-                'total_price' => $request->total_price,
-                'transaction_status' => 'PENDING',
-                'code' => $code
-            ]);
+        $transaction = Transaction::create([
+            'users_id' => auth()->id(),
+            'insurance_price' => 0,
+            'shipping_price' => 0,
+            'total_price' => $request->total_price,
+            'transaction_status' => 'PENDING',
+            'code' => $code
+        ]);
 
         foreach($carts as $cart)
         {
@@ -100,13 +100,11 @@ class CheckoutController extends Controller
               }
 
         DB::commit();
-        } catch (Exception $e) {
-            # code...
-            echo $e->getMessage();
-            DB::rollback();
-        }
-
-        return dd($transaction);
+        // } catch (Exception $e) {
+        //     # code...
+        //     echo $e->getMessage();
+        //     DB::rollback();
+        // }
 
     }
 
