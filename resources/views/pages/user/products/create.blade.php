@@ -16,6 +16,15 @@ Products
         <div class="dashboard-content">
             <div class="row">
                 <div class="col-12">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>$error</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="users_id" value="{{ auth()->id() }}">
@@ -82,5 +91,8 @@ Products
 @endsection
 
 @push('addon-script')
-
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace("description");
+</script>
 @endpush
