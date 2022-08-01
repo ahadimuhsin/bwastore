@@ -24,7 +24,7 @@ Products
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <a class="card card-dashboard-product d-block" href="{{ route('dashboard.products.details', $item->id) }}">
                         <div class="card-body">
-                            <img src="{{ $item->galleries->first()->photo ? asset('storage/'.$item->galleries->first()->photo) :'https://www.indonesiapower.co.id/SiteAssets/image-not-found.png' }}" alt=""
+                            <img src="{{ $item->galleries->first() ? asset('storage/'.$item->galleries->first()->photo) :'https://www.indonesiapower.co.id/SiteAssets/image-not-found.png' }}" alt=""
                             class="mb-2 img-fluid" style="width:200px;height:100px;object-fit: cover;" />
                             <div class="product-title">{{ $item->name }}</div>
                             <div class="product-category">{{ $item->nama_kategori }}</div>

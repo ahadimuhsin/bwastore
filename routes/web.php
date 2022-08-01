@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('store-settings', [StoreSettingsController::class, 'store'])->name('dashboard.settings');
         Route::get('accounts', [StoreSettingsController::class, 'account'])->name('dashboard.accounts');
+        Route::post('accounts/{redirect}', [StoreSettingsController::class, 'update'])->name('dashboard.redirect');
     });
 });
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')

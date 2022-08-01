@@ -60,7 +60,7 @@
                           <div class="row">
                             <div class="col-md-1">
                               <img
-                                src="{{ $item->product->galleries->first()->photo ? Storage::url($item->product->galleries->first()->photo) :
+                                src="{{ $item->product->galleries->first() ? Storage::url($item->product->galleries->first()->photo) :
                                 'https://www.indonesiapower.co.id/SiteAssets/image-not-found.png' }}"
                                 alt="" class="w-75"
                               />
