@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard.transactions');
         Route::get('/transactions/{id}', [DashboardTransactionController::class, 'show'])->name('dashboard.transactions.details');
+        Route::put('/transaction/update/{id}', [DashboardTransactionController::class, 'updateResi'])->name('dashboard.transactions.update');
 
         Route::get('store-settings', [StoreSettingsController::class, 'store'])->name('dashboard.settings');
         Route::get('accounts', [StoreSettingsController::class, 'account'])->name('dashboard.accounts');
@@ -59,5 +60,6 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('product-galleries', ProductGalleryController::class);
+    Route::resource('transaction', TransactionController::class);
 });
 Auth::routes();
